@@ -38,26 +38,16 @@ class Person:
     # collided with another object
     def collide(self, other):
         myRec = self.getRec()
-        x = self.x
-        y = self.y
         otherRec = other.getRec()
-        oRight = otherRec[0] + otherRec[1]
-
-        oLeft = otherRec[0] - otherRec[1]
-
+        oRight = otherRec[0] + otherRec[2]
         oBottom = otherRec[1] + otherRec[3]
-        oTop = myRec[1] - myRec[3]
 
         right = myRec[0] + myRec[2]
-        bottom = myRec[1] + myRec[2]
+        bottom = myRec[1] + myRec[3]
 
-        # if person is right of the object - person.x greater than (other.x + other.width)
-        #    person and object do not intersect
-
-        if x > 400-40 and x < 450 and y < 50:
+        if (otherRec[0] <= right) and (oRight >= self.x) and (otherRec[1] <= bottom) and (oBottom >= self.y):
             return True
-        else:
-            return False
+        return False
 
     # This method returns a rectangle - (x, y, width, height)
     # that represents the object
