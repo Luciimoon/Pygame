@@ -22,7 +22,7 @@ theWall = Wall(150,150)
 changedRecs=[]
 
 #draw the starting screen
-WHITE = (255,255,255)
+WHITE = (55,255,255)
 screen.fill(WHITE)
 theWall.draw(screen)
 pygame.display.update()
