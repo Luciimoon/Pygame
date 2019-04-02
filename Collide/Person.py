@@ -5,37 +5,52 @@ import pygame
 from pygame.locals import *
 
 
-# Create a class called person
 class Person:
-    # Create a constructor method that sets self.x to newX, 
-    # self.y to newY and loads the image "dude.gif" into self.img
+    # set all class variables in the constructor
     def __init__(self, newX, newY):
         self.x = newX
         self.y = newY
-        self.img = pygame.image.load("dude.gif")
 
-    # draw the image on the surface
+        """  Add images to the list of images  """
+        self.images = [pygame.image.load("dude.gif").convert(),
+                       pygame.image.load("dudeU.gif").convert(),
+                       pygame.image.load("dudeR.gif").convert(),
+                       pygame.image.load("dudeL.gif").convert()]
+
+        """  Use this to keep track of which image to use """
+        self.cos = 0
+
+    """  draw your person with the correct image  """
+
     def draw(self, window):
-        window.blit(self.img, (self.x, self.y))
+        window.blit(self.images[self.cos], (self.x, self.y))
+
+    """  move person left and set the costume facing left. """
 
     def moveLeft(self):
         self.x = self.x - 15
+        self.cos = 3
         pass
 
     def moveRight(self):
         self.x = self.x + 15
+        self.cos = 2
         pass
 
     def moveUp(self):
         self.y = self.y - 15
+        self.cos = 1
         pass
 
     def moveDown(self):
+        self.cos = 0
         self.y = self.y + 15
         pass
 
-    # It will return True if your person has 
-    # collided with another object
+    """
+    This will return True if your person has collided with other
+    """
+
     def collide(self, other):
         myRec = self.getRec()
         otherRec = other.getRec()
@@ -49,8 +64,11 @@ class Person:
             return True
         return False
 
-    # This method returns a rectangle - (x, y, width, height)
-    # that represents the object
+    """
+    This method returns a rectangle - (x, y, width, height) - that represents
+    the object
+    """
+
     def getRec(self):
-        myRec = self.img.get_rect()
+        myRec = self.images[self.cos].get_rect()
         return (self.x, self.y, myRec[2], myRec[3])
