@@ -1,5 +1,3 @@
-#(c) A+ Computer Science
-#www.apluscompsci.ccom
 
 import pygame, sys
 from pygame.locals import *
