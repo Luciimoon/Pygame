@@ -30,10 +30,12 @@ class Molecule:
         (xSpeed, ySpeed) = self.moveInDirection()
         
         #change x by xSpeed
+        self.x = self.x + xSpeed
         
         
         # check to see if the molecule has gone off 
         # the screen to the right or left
+
         
             # undo the change to x
             
@@ -41,6 +43,7 @@ class Molecule:
             
         
         # change y by YSpeed
+        self.y = self.y + ySpeed
         
         # check to see if the molecule has gone off 
         # the screen
